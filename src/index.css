@@ -1,0 +1,9 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+@font-face {
+  font-family: Tosca;
+  src: url("font/TOSCA___.otf") format("opentype");
+}

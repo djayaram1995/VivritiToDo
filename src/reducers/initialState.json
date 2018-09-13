@@ -1,0 +1,18 @@
+{
+    "allItems": [{
+        "itemImage": "",
+        "itemName": "g",
+        "itemDescription": "",
+        "itemPrice": "5"
+    },
+    {
+        "itemImage": "",
+        "itemName": "",
+        "itemDescription": "",
+        "itemPrice": "8"
+    }],
+    "contactUs": [{
+        "name": "b",
+        "phoneNo": ""
+    }]
+}

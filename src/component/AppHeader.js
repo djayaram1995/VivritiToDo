@@ -79,6 +79,11 @@ class App extends Component {
       editBtnToggle: editArr
     }) }
   }
+  deleteBtn(i) {
+    const { listItem } = this.state;
+    const removeByIndex = [...listItem.slice(0, i), ...listItem.slice(i + 1)];
+    this.setState({listItem: removeByIndex});
+  }
   render() {
     const { name, listItem, doneList, editBtnToggle, inputType, editName } = this.state;
     return (
@@ -100,6 +105,7 @@ class App extends Component {
                 <button onClick={() => this.editBtn(index)}>edit</button>: <button onClick={() => this.saveBtn(index)}>save</button>
 
               }
+              <button onClick={() => this.deleteBtn(index)}>delete</button>
             </div>
           )}
         <div> Done Items</div>

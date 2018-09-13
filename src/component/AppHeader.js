@@ -10,7 +10,9 @@ class App extends Component {
       doneList: [],
       editBtnToggle: [],
       inputType: [],
-      editName: ''
+      editName: '',
+      editNameDone: '',
+      inputTypeDone: []
     };
   }
   type(e) {
@@ -21,6 +23,11 @@ class App extends Component {
   typeEdit(e) {
     this.setState({
       editName: e.target.value
+    });
+  }
+  typeEditDone(e) {
+    this.setState({
+      editNameDone: e.target.value
     });
   }
   addClickNotDone() {
@@ -79,13 +86,45 @@ class App extends Component {
       editBtnToggle: editArr
     }) }
   }
+  editBtnDone(i) {
+    const { editBtnToggleDone, inputTypeDone } = this.state;
+    const editArr =  editBtnToggleDone;
+    editArr[i] = false;
+    const inputTypArr =  inputTypeDone;
+    inputTypArr[i] = true;
+    this.setState({
+      inputTypeDone: inputTypArr,
+      editBtnToggleDone: editArr
+    })
+  }
+  saveBtnDone(i) {
+    const { doneList, editName, editBtnToggle, inputTypeDone } = this.state;
+    const editArr =  editBtnToggle;
+    editArr[i] = true;
+    const inputTypArr =  inputTypeDone;
+    inputTypArr[i] = false;
+    if(editName) {
+    const doneListCopy = doneList;
+    doneListCopy[i] = editName;
+    this.setState({
+      editName: '',
+      doneList: doneListCopy,
+      inputTypeDone: inputTypArr,
+      editBtnToggle: editArr
+    }) }
+  }
   deleteBtn(i) {
     const { listItem } = this.state;
     const removeByIndex = [...listItem.slice(0, i), ...listItem.slice(i + 1)];
     this.setState({listItem: removeByIndex});
   }
+  deleteBtnDone(i) {
+    const { doneList } = this.state;
+    const removeByIndex = [...doneList.slice(0, i), ...doneList.slice(i + 1)];
+    this.setState({doneList: removeByIndex});
+  }
   render() {
-    const { name, listItem, doneList, editBtnToggle, inputType, editName } = this.state;
+    const { name, listItem, doneList, editBtnToggle, inputType, editName, editNameDone, inputTypeDone, editBtnToggleDone } = this.state;
     return (
       <div>
         <div>
@@ -110,10 +149,19 @@ class App extends Component {
           )}
         <div> Done Items</div>
         {
-          doneList.map((item, i) =>
-            <div key={i} id={i}>
-              <input type="checkbox" checked={true} onChange={() => this.handleCheckBoxChangeChk(i)} />
-              {item}
+          doneList.map((item, index) =>
+            <div key={index} id={index}>
+              <input type="checkbox" checked={true} onChange={() => this.handleCheckBoxChangeChk(index)} />
+              {
+                inputTypeDone[index] ?
+                  <input type="text" value={editNameDone} onChange={e => this.typeEditDone(e)} /> :
+                  item
+              }
+              {editBtnToggleDone[index] ?
+                <button onClick={() => this.editBtnDone(index)}>edit</button>: <button onClick={() => this.saveBtnDone(index)}>save</button>
+
+              }
+              <button onClick={() => this.deleteBtntDone(index)}>delete</button>
             </div>
           )}
 

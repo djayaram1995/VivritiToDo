@@ -7,12 +7,20 @@ class App extends Component {
     this.state = {
       name: "",
       listItem: [],
-      doneList: []
+      doneList: [],
+      editBtnToggle: true,
+      inputType: false,
+      editName: ''
     };
   }
   type(e) {
     this.setState({
       name: e.target.value
+    });
+  }
+  typeEdit(e) {
+    this.setState({
+      editName: e.target.value
     });
   }
   addClickNotDone() {
@@ -42,8 +50,24 @@ class App extends Component {
       doneList: removeByIndex
     })
   }
+  editBtn(i) {
+    this.setState({
+      inputType: true,
+      editBtnToggle: false
+    })
+  }
+  saveBtn(i) {
+    const { listItem, editName } = this.state;
+    const listItemCopy = listItem;
+    listItemCopy[i] = editName;
+    this.setState({
+      editName: '',
+      listItem: listItemCopy,
+      inputType: false
+    })
+  }
   render() {
-    const { name, listItem, doneList } = this.state;
+    const { name, listItem, doneList, editBtnToggle, inputType, editName } = this.state;
     return (
       <div>
         <div>
@@ -54,7 +78,15 @@ class App extends Component {
           listItem.map((item, index) =>
             <div key={index} id={index}>
               <input type="checkbox" checked={false} onChange={() => this.handleUnCheckBoxChangeChk(index)} />
-              {item}
+              {
+                inputType ?
+                  <input type="text" value={editName} onChange={e => this.typeEdit(e)} /> :
+                  item
+              }
+              {editBtnToggle ?
+                <button onClick={() => this.editBtn(index)}>edit</button>: <button onClick={() => this.saveBtn(index)}>save</button>
+
+              }
             </div>
           )}
         <div> Done Items</div>

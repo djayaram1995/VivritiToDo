@@ -58,13 +58,15 @@ class App extends Component {
   }
   saveBtn(i) {
     const { listItem, editName } = this.state;
+    if(editName) {
     const listItemCopy = listItem;
     listItemCopy[i] = editName;
     this.setState({
       editName: '',
       listItem: listItemCopy,
-      inputType: false
-    })
+      inputType: false,
+      editBtnToggle: true
+    }) }
   }
   render() {
     const { name, listItem, doneList, editBtnToggle, inputType, editName } = this.state;

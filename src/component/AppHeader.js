@@ -28,14 +28,19 @@ class App extends Component {
     const { listItem, doneList } = this.state;
     const removeByIndex = [...listItem.slice(0, index), ...listItem.slice(index + 1)];
     const itemToAdd = listItem[index];
-    console.log(removeByIndex);
     this.setState({
       doneList: [...doneList, itemToAdd],
       listItem: removeByIndex
     })
   }
-  handleCheckBoxChangeChk(i) {
-
+  handleCheckBoxChangeChk(index) {
+    const { listItem, doneList } = this.state;
+    const removeByIndex = [...doneList.slice(0, index), ...doneList.slice(index + 1)];
+    const itemToAdd = doneList[index];
+    this.setState({
+      listItem: [...listItem, itemToAdd],
+      doneList: removeByIndex
+    })
   }
   render() {
     const { name, listItem, doneList } = this.state;
@@ -56,7 +61,7 @@ class App extends Component {
         {
           doneList.map((item, i) =>
             <div key={i} id={i}>
-              <input type="checkbox" checked={true} onChange={i => this.handleCheckBoxChangeChk(i)} />
+              <input type="checkbox" checked={true} onChange={() => this.handleCheckBoxChangeChk(i)} />
               {item}
             </div>
           )}

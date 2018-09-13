@@ -75,7 +75,7 @@ class App extends Component {
     this.setState({
       editName: '',
       listItem: listItemCopy,
-      inputType: editArr,
+      inputType: inputTypArr,
       editBtnToggle: editArr
     }) }
   }

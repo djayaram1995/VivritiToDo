@@ -101,19 +101,19 @@ class App extends Component {
     })
   }
   saveBtnDone(i) {
-    const { doneList, editName, editBtnToggle, inputTypeDone } = this.state;
-    const editArr =  editBtnToggle;
+    const { doneList, editNameDone, editBtnToggleDone, inputTypeDone } = this.state;
+    const editArr =  editBtnToggleDone;
     editArr[i] = true;
     const inputTypArr =  inputTypeDone;
     inputTypArr[i] = false;
-    if(editName) {
+    if(editNameDone) {
     const doneListCopy = doneList;
-    doneListCopy[i] = editName;
+    doneListCopy[i] = editNameDone;
     this.setState({
-      editName: '',
+      editNameDone: '',
       doneList: doneListCopy,
       inputTypeDone: inputTypArr,
-      editBtnToggle: editArr
+      editBtnToggleDone: editArr
     }) }
   }
   deleteBtn(i) {
@@ -164,7 +164,7 @@ class App extends Component {
                 <button onClick={() => this.editBtnDone(index)}>edit</button>: <button onClick={() => this.saveBtnDone(index)}>save</button>
 
               }
-              <button onClick={() => this.deleteBtntDone(index)}>delete</button>
+              <button onClick={() => this.deleteBtnDone(index)}>delete</button>
             </div>
           )}
 

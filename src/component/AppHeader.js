@@ -9,6 +9,7 @@ class App extends Component {
       listItem: [],
       doneList: [],
       editBtnToggle: [],
+      editBtnToggleDone: [],
       inputType: [],
       editName: '',
       editNameDone: '',
@@ -42,12 +43,14 @@ class App extends Component {
     }
   }
   handleUnCheckBoxChangeChk(index) {
-    const { listItem, doneList } = this.state;
+    const { listItem, doneList, editBtnToggleDone, inputTypeDone } = this.state;
     const removeByIndex = [...listItem.slice(0, index), ...listItem.slice(index + 1)];
     const itemToAdd = listItem[index];
     this.setState({
       doneList: [...doneList, itemToAdd],
-      listItem: removeByIndex
+      listItem: removeByIndex,
+      editBtnToggleDone: [...editBtnToggleDone, true],
+      inputTypeDone: [...inputTypeDone, false]
     })
   }
   handleCheckBoxChangeChk(index) {

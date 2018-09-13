@@ -8,8 +8,8 @@ class App extends Component {
       name: "",
       listItem: [],
       doneList: [],
-      editBtnToggle: true,
-      inputType: false,
+      editBtnToggle: [],
+      inputType: [],
       editName: ''
     };
   }
@@ -24,11 +24,13 @@ class App extends Component {
     });
   }
   addClickNotDone() {
-    const { name, listItem } = this.state;
+    const { name, listItem, editBtnToggle, inputType } = this.state;
     if(name) {
       this.setState({
         listItem: [...listItem, name],
         name: '',
+        editBtnToggle: [...editBtnToggle, true],
+        inputType: [...inputType, false]
       })
     }
   }
@@ -51,21 +53,30 @@ class App extends Component {
     })
   }
   editBtn(i) {
+    const { editBtnToggle, inputType } = this.state;
+    const editArr =  editBtnToggle;
+    editArr[i] = false;
+    const inputTypArr =  inputType;
+    inputTypArr[i] = true;
     this.setState({
-      inputType: true,
-      editBtnToggle: false
+      inputType: inputTypArr,
+      editBtnToggle: editArr
     })
   }
   saveBtn(i) {
-    const { listItem, editName } = this.state;
+    const { listItem, editName, editBtnToggle, inputType } = this.state;
+    const editArr =  editBtnToggle;
+    editArr[i] = true;
+    const inputTypArr =  inputType;
+    inputTypArr[i] = false;
     if(editName) {
     const listItemCopy = listItem;
     listItemCopy[i] = editName;
     this.setState({
       editName: '',
       listItem: listItemCopy,
-      inputType: false,
-      editBtnToggle: true
+      inputType: editArr,
+      editBtnToggle: editArr
     }) }
   }
   render() {
@@ -81,11 +92,11 @@ class App extends Component {
             <div key={index} id={index}>
               <input type="checkbox" checked={false} onChange={() => this.handleUnCheckBoxChangeChk(index)} />
               {
-                inputType ?
+                inputType[index] ?
                   <input type="text" value={editName} onChange={e => this.typeEdit(e)} /> :
                   item
               }
-              {editBtnToggle ?
+              {editBtnToggle[index] ?
                 <button onClick={() => this.editBtn(index)}>edit</button>: <button onClick={() => this.saveBtn(index)}>save</button>
 
               }

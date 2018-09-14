@@ -1,67 +1,33 @@
-.navbar-nav{
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
- }
- .navbar-light .navbar-nav .nav-link {
-  color: #DC143C !important;
-  padding-left: 5px;
- }
- .App-header {
-  background-color:  #bbf1cc;
- }
- .App-title {
-  font-family: Tosca;
-  color:#DC143C;
- }
-@media (min-width: 480px) {
-  .navbar-nav {
-    -webkit-flex-direction: row;
-    -ms-flex-direction: row;
-    flex-direction: row;
-    font-size: 25px;
-  }
-  .App-logo {
-    float: left;
-    height: 50px;
-    text-align: center;
-  }
-  .App-header {
-    height: 80px;
-    padding: 20px;
-    color: white;
-  }
-  .App-title {
-    font-size: 2.5em;
-    text-align: left;
-  }
-  .App-intro {
-    font-size: large;
-  }
+.borderBottom {
+  padding-top: 15px;
+  border-bottom: 2px solid black;
+  margin-bottom: 15px;
+  font-weight: bolder;
 }
 
-@media (max-width: 480px) {
-  .App-logo {
-    float: left;
-    height: 25px;
-  }
-  .App-title {
-     font-size: 1.1em;
-    text-align: left;
-  }
-  .App-header {
-    height: 60px;
-    }
-  .offset{
-    margin-top: 7px;
-  }
-  .navbar-toggler {
-    padding: 0rem;
-    font-size: .9rem;
-    line-height: 1;
-    background-color: transparent;
-   }
-  .navbar-nav{
-    font-size: 18px;
-    background-color: #7FFF00;
-   
-  }   
+.container {
+  border: 1px solid black;
+  width: 300px;
+}
+
+.f-right {
+  float: right;
+}
+
+.delete {
+  margin-left: 10px;
+}
+
+.minHeight {
+  min-height: 200px;
+}
+
+.d-inline {
+  display: inline-block !important;
+}
+
+.borderBottomList {
+  padding-bottom: 10px;
+  padding-top: 10px;
+  border-bottom: 1px solid grey;
 }

@@ -134,6 +134,21 @@ class App extends Component {
     const removeByIndex = [...doneList.slice(0, i), ...doneList.slice(i + 1)];
     this.setState({ doneList: removeByIndex });
   }
+  handleEnterAdd(e) {
+    if (e.key === "Enter") {
+      this.addClickNotDone();
+    }
+  }
+  handleEnter(e, index) {
+    if (e.key === "Enter") {
+      this.saveBtn(index);
+    }
+  }
+  handleEnterDone(e, index) {
+    if (e.key === "Enter") {
+      this.saveBtnDone(index);
+    }
+  }
   render() {
     const { name, listItem, doneList, editBtnToggle, inputType, editName, editNameDone, inputTypeDone, editBtnToggleDone } = this.state;
     return (
@@ -142,7 +157,7 @@ class App extends Component {
           ADD ITEM
         </div>
         <div>
-          <input type="text" value={name} onChange={e => this.type(e)} />
+          <input type="text" value={name} onKeyPress={e => this.handleEnterAdd(e) } onChange={e => this.type(e)} />
           <button className="f-right" onClick={() => this.addClickNotDone()}>Add</button>
         </div>
         <div id="todo" className="minHeight">
@@ -156,8 +171,14 @@ class App extends Component {
                 <div className="d-inline">
                   {
                     inputType[index] ?
-                      <input style={{ width: '120px' }} type="text" value={editName} onChange={e => this.typeEdit(e)} /> :
-                      <div style={{ width: '125px' }}>{item}</div>
+                      <input 
+                        style={{ width: '320px' }}
+                        type="text"
+                        value={editName}
+                        onChange={e => this.typeEdit(e)}
+                        onKeyPress={e => this.handleEnter(e, index) }
+                      /> :
+                      <div style={{ width: '325px' }}>{item}</div>
                   }
                 </div>
 
@@ -185,8 +206,13 @@ class App extends Component {
                 <div className="d-inline">
                   {
                     inputTypeDone[index] ?
-                      <input style={{ width: '120px' }} type="text" value={editNameDone} onChange={e => this.typeEditDone(e)} /> :
-                      <div style={{ width: '125px' }}>{item}</div>
+                      <input
+                        style={{ width: '320px' }}
+                        type="text" value={editNameDone}
+                        onChange={e => this.typeEditDone(e)}
+                        onKeyPress={e => this.handleEnterDone(e, index) }
+                      /> :
+                      <div style={{ width: '325px', textDecoration: "line-through" }}>{item}</div>
                   }
                 </div>
 

@@ -125,14 +125,18 @@ class App extends Component {
     }
   }
   deleteBtn(i) {
-    const { listItem } = this.state;
-    const removeByIndex = [...listItem.slice(0, i), ...listItem.slice(i + 1)];
-    this.setState({ listItem: removeByIndex });
+    const { listItem, editBtnToggle } = this.state;
+    if (editBtnToggle[i]) {
+      const removeByIndex = [...listItem.slice(0, i), ...listItem.slice(i + 1)];
+      this.setState({ listItem: removeByIndex });
+    }
   }
   deleteBtnDone(i) {
-    const { doneList } = this.state;
-    const removeByIndex = [...doneList.slice(0, i), ...doneList.slice(i + 1)];
-    this.setState({ doneList: removeByIndex });
+    const { doneList, editBtnToggleDone } = this.state;
+    if (editBtnToggleDone[i]) {
+      const removeByIndex = [...doneList.slice(0, i), ...doneList.slice(i + 1)];
+      this.setState({ doneList: removeByIndex });
+    }
   }
   handleEnterAdd(e) {
     if (e.key === "Enter") {
